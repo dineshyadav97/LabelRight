@@ -8,5 +8,8 @@ public class Constants {
 	static final String WebDriverUrl = "src/main/resources/chromedriver.exe";
 	static final String Flow1ArtworkUrl = "D:\\Pepsico\\LabelRight-Selenium 11Apr\\LabelRight\\src\\test\\java\\artworkFiles\\MARI-611B Etiqueta 1.75 L Pepsi A Solo Q10 C_P - Copy.pdf";
 	static final String Flow1LidUrl = "D:\\Pepsico\\LabelRight-Selenium 11Apr\\LabelRight\\src\\test\\java\\artworkFiles\\LID F0000006421 PEPSI-PET-LATA-GT-V1.pdf";
+	static final int Package_Primary = 2;
+	static final int RegionCategory_US_Beverages = 1;
+	
 
 }
