@@ -31,6 +31,8 @@ public class LabelRightAutomationTest {
 	
 	private static Authentication authentication;
 	private static ArtworkManualFlows artworkManualFlows;
+	private static DashboardFlow dashboardFlow;
+	private static ResumeFunctionality resumeFunctionality;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -44,6 +46,8 @@ public class LabelRightAutomationTest {
 		log.info("Application Started.");
 		authentication = new Authentication(driver);
 		artworkManualFlows = new ArtworkManualFlows(driver);
+		dashboardFlow = new DashboardFlow(driver);
+		resumeFunctionality = new ResumeFunctionality(driver);
 		
 	}
 
@@ -72,18 +76,40 @@ public class LabelRightAutomationTest {
 	}
 
 	@Test
-	public void test() throws InterruptedException {
-		log.info("Flow1 Started.");
-		artworkManualFlows.Flow1(Constants.RegionCategory_US_Beverages,Constants.Package_Primary,Constants.Flow1ArtworkUrl,Constants.Flow1LidUrl);
+	public void test1() throws InterruptedException {
+		
+		log.info("Adhoc Flow1 Started.");
+		artworkManualFlows.Flow1(Constants.RegionCategory_US_SocialBeverages,Constants.Package_Primary,Constants.Flow1ArtworkUrl,Constants.Flow1LidUrl);
 		
 		
         WebElement start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
 		js.executeScript("arguments[0].click();", start_page);
 
 		
-		log.info("Flow2 Started.");
-		artworkManualFlows.Flow1(Constants.RegionCategory_US_Beverages,Constants.Package_Primary,Constants.Flow1ArtworkUrl,Constants.Flow1LidUrl);
+		log.info("Adhoc Flow2 Started.");
+		artworkManualFlows.Flow1(Constants.RegionCategory_US_SocialBeverages,Constants.Package_Primary,Constants.Flow1ArtworkUrl,Constants.Flow1LidUrl);
 		
+		start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
+		js.executeScript("arguments[0].click();", start_page);
+
+		log.info("Dashboard Flow - Review In Progress Started.");
+		dashboardFlow.ReviewInProgress();
+		
+		start_page = driver.findElement(By.xpath("/html/body/app-root/main/app-homepage/div/header/app-header/div/h3/span"));
+		js.executeScript("arguments[0].click();", start_page);
+		
+		log.info("Dashboard Flow - Reviewed Started.");
+		dashboardFlow.Reviewed();
+		
+		start_page = driver.findElement(By.xpath("/html/body/app-root/main/app-homepage/div/header/app-header/div/h3/span"));
+		js.executeScript("arguments[0].click();", start_page);
+		
+		log.info("Dashboard Flow - Review In Progress - Resume Started.");
+		resumeFunctionality.resumeFlow();
+	
 	}
+	
+	
+	
 
 }
