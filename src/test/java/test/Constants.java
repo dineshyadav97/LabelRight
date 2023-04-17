@@ -19,6 +19,7 @@ public class Constants {
 	static final int RegionCategory_SaudiArabia_Beverages = 6;
 	static final int RegionCategory_Latam_Beverages = 7;
 	static final int RegionCategory_Latam_Foods = 8;
+	static final String ArtworkRequests="D:\\Pepsico\\LabelRight-Selenium 11Apr\\LabelRight\\src\\test\\java\\artworkFiles\\ArtworkRequests.xlsx";
 	
 	
 
