@@ -117,10 +117,10 @@ public class LabelRightAutomationTest {
 		js.executeScript("arguments[0].click();", start_page);
 
 		log.info("Checking if error count in results page is equal to error count in reviewed page.");
-		artworkManualFlows.checkErrorCount(artworkDto,Constants.RegionCategory_Latam_Beverages);
+		artworkManualFlows.checkErrorCount(artworkDto,regionCategoryPackageType.getRegionCategory());
 		
+		start_page = driver.findElement(By.xpath("/html/body/app-root/main/app-homepage/div/header/app-header/div/h3/span"));
 		js.executeScript("arguments[0].click();", start_page);
-
 
 		
 		}

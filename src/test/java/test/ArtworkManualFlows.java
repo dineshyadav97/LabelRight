@@ -54,7 +54,7 @@ public class ArtworkManualFlows {
         
 
         WebElement aw_upload_element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/app-root/main/app-upload-page/div/div/div/div[2]/div/div[1]/app-file-upload/div/div[2]/div/input")));
-        File artwork = new File(Constants.Flow1ArtworkUrl);
+        File artwork = new File(artworkUrl);
         log.info(artwork);
         aw_upload_element.sendKeys(artwork.getAbsolutePath());
         log.info("Artwork Uploaded");
@@ -62,7 +62,7 @@ public class ArtworkManualFlows {
         Thread.sleep(2000);
         
         WebElement lid_upload_element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/app-root/main/app-upload-page/div/div/div/div[2]/div/div[2]/app-file-upload/div/div[2]/div/input")));
-        File lid = new File(Constants.Flow1LidUrl);
+        File lid = new File(lidUrl);
         log.info(lid);
         lid_upload_element.sendKeys(lid.getAbsolutePath());
         log.info("Lid Uploaded");
@@ -73,7 +73,7 @@ public class ArtworkManualFlows {
         artworkDto.setArtworkID(Integer.parseInt(ArtworkID));
         
         try {
-            WebElement upload_page_next = new WebDriverWait(driver,Duration.ofSeconds(70) ).until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/app-root/main/app-upload-page/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[2]/div[1]/button")));
+            WebElement upload_page_next = new WebDriverWait(driver,Duration.ofSeconds(100) ).until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/app-root/main/app-upload-page/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[2]/div[1]/button")));
             js.executeScript("arguments[0].click();", upload_page_next);
             log.info("Upload Button CLicked.");
         } catch (Exception e) {
