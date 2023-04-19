@@ -44,10 +44,6 @@ public class LabelRightAutomationTest {
 	private static ResumeFunctionality resumeFunctionality;
 	private static ArtworkInterrupt artworkInterrupt;
 	private static VerifyInterruptionFlow verifyInterruptionFlow;
-	private static LIDInteruptedFlow LidInteruptedFlow;
-	private static ArtworkAndLidInterruption artworkAndLidInterruption;
-	private static ResultInterruptionFlow resultInterruptionFlow;
-
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -65,9 +61,6 @@ public class LabelRightAutomationTest {
 		resumeFunctionality = new ResumeFunctionality(driver);
 		artworkInterrupt = new ArtworkInterrupt(driver);
 		verifyInterruptionFlow = new VerifyInterruptionFlow(driver);
-		LidInteruptedFlow = new LIDInteruptedFlow(driver);
-		artworkAndLidInterruption = new ArtworkAndLidInterruption(driver);
-		resultInterruptionFlow = new ResultInterruptionFlow(driver);
 		
 	}
 
@@ -164,15 +157,6 @@ public class LabelRightAutomationTest {
 	
 		log.info("verify interrupt flow started");
 		verifyInterruptionFlow.Flow5(Constants.RegionCategory_US_SocialBeverages,Constants.Package_Primary,Constants.Flow1ArtworkUrl, Constants.Flow1LidUrl);
-		
-		log.info("Flow3 Started.");
-		LidInteruptedFlow.Flow3(Constants.RegionCategory_US_SocialBeverages,Constants.Package_Primary,Constants.Flow1ArtworkUrl,Constants.Flow1LidUrl);
-		
-		log.info("Flow4 Started.");
-		artworkAndLidInterruption.Flow4(Constants.RegionCategory_US_SocialBeverages,Constants.Package_Primary,Constants.Flow1ArtworkUrl,Constants.Flow1LidUrl);
-			
-		log.info("Flow6 Started.");
-		resultInterruptionFlow.Flow6(Constants.RegionCategory_US_SocialBeverages,Constants.Package_Primary,Constants.Flow1ArtworkUrl,Constants.Flow1LidUrl);
 
 	}
 	
