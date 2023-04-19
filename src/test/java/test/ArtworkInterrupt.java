@@ -19,6 +19,7 @@ public class ArtworkInterrupt {
 	private static WebDriverWait wait;
 	private static Logger log = LogManager.getLogger();
 
+	
 	public ArtworkInterrupt(WebDriver driver) {
 		ArtworkInterrupt.driver = driver;
 		ArtworkInterrupt.js = (JavascriptExecutor) driver;
