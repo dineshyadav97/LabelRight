@@ -40,14 +40,12 @@ public class DashboardFlow {
 				By.xpath("/html/body/app-root/main/app-homepage/div/div/div[1]/button[1]")));
 		js.executeScript("arguments[0].click();", reviewInProgress);
 		
-		WebElement searchTab = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/app-root/main/app-homepage/div/div/div[2]/app-dashboardtable/div/div[1]/div[3]/input")));
-		js.executeScript("arguments[0].value = '" +search + "';", searchTab);
+		WebElement search_bar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
+				"//app-root//app-homepage[@class='ng-star-inserted']/div[@class='dashboardpageContainer']/div[@class='maindiv']//app-dashboardtable[@class='ng-star-inserted']/div[@class='dashboardtablemain']//input[@type='text']")));
+		search_bar.sendKeys(""+ search);
+		js.executeScript("arguments[0].click();", search_bar);
 		
 		Thread.sleep(3000);
-		
-//		WebElement rowData = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/app-root/main/app-homepage/div/div/div[2]/app-dashboardtable/div/div[2]/table/tbody/tr[1]/td[6]/span")));
-//		String data = rowData.getText();
-//		Assert.assertTrue("fetched row doesn't contain the searched word", data.contains(search));
 		
 		List<WebElement> page1Data = driver.findElements(By.xpath("/html/body/app-root/main/app-homepage/div/div/div[2]/app-dashboardtable/div/div[2]/table/tbody/tr"));
 		int i=0;

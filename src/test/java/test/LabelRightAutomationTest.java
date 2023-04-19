@@ -43,6 +43,7 @@ public class LabelRightAutomationTest {
 	private static DashboardFlow dashboardFlow;
 	private static ResumeFunctionality resumeFunctionality;
 	private static ArtworkInterrupt artworkInterrupt;
+	private static VerifyInterruptionFlow verifyInterruptionFlow;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -59,6 +60,7 @@ public class LabelRightAutomationTest {
 		dashboardFlow = new DashboardFlow(driver);
 		resumeFunctionality = new ResumeFunctionality(driver);
 		artworkInterrupt = new ArtworkInterrupt(driver);
+		verifyInterruptionFlow = new VerifyInterruptionFlow(driver);
 		
 	}
 
@@ -146,9 +148,15 @@ public class LabelRightAutomationTest {
 		
 		log.info("Dashboard Flow - Review In Progress - Resume Started.");
 		resumeFunctionality.resumeFlow();
-	
+		
 		log.info("Artwork interrupt flow started");
-		artworkInterrupt.artworkInterruptFlow(Constants.RegionCategory_US_SocialBeverages,Constants.Package_Primary,Constants.Flow1ArtworkUrl);
+		artworkInterrupt.artworkInterruptFlow(Constants.RegionCategory_US_SocialBeverages,Constants.Package_Primary,Constants.Flow1ArtworkUrl, Constants.Flow1LidUrl);
+		
+		start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
+		js.executeScript("arguments[0].click();", start_page);
+	
+		log.info("verify interrupt flow started");
+		verifyInterruptionFlow.Flow5(Constants.RegionCategory_US_SocialBeverages,Constants.Package_Primary,Constants.Flow1ArtworkUrl, Constants.Flow1LidUrl);
 
 	}
 	
