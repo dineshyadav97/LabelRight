@@ -32,19 +32,19 @@ public class ArtworkAndLidInterruption {
 				"/html/body/app-root/header/app-header/div/div/div[2]/mat-form-field/div/div[1]/div[2]/mat-icon")));
 		js.executeScript("arguments[0].click();", region_selection_element);
 		log.info("region_selection_element");
-		Thread.sleep(4000);
+		//Thread.sleep(4000);
 
 		WebElement region_option_element = wait.until(ExpectedConditions
 				.presenceOfElementLocated(By.xpath("/html/body/div[2]/div[2]/div/div/div/mat-option[1]/span")));
 		js.executeScript("arguments[0].click();", region_option_element);
 		log.info("region_option_element");
-		Thread.sleep(4000);
+		//Thread.sleep(4000);
 
 		WebElement New_Ad_hoc_review_btn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"//app-root//app-get-started[@class='ng-star-inserted']/div/div/div[@class='col-8 mx-auto']//div[@class='menulist']/button[2]")));
 		js.executeScript("arguments[0].click();", New_Ad_hoc_review_btn);
 		log.info("New_Ad_hoc_review_btn");
-		Thread.sleep(4000);
+		//Thread.sleep(4000);
 
 		WebElement package_selection_element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
 				"/html/body/app-root/main/app-upload-page/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[1]/div[2]/mat-form-field/div/div[1]/div/mat-select/div/div[1]/span/span")));
@@ -84,32 +84,32 @@ public class ArtworkAndLidInterruption {
 				.presenceOfElementLocated(By.xpath("/html/body/app-root/header/app-header/div/h3/span")));
 		js.executeScript("arguments[0].click();", LabelRight_btn);
 		log.info("LabelRight_btn");
-		Thread.sleep(4000);
+		//Thread.sleep(4000);
 
 		WebElement dashboard_project_btn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"//app-root//app-get-started[@class='ng-star-inserted']/div/div/div[@class='col-8 mx-auto']//button[@class='btn btn-primary dashboard-btn']")));
 		js.executeScript("arguments[0].click();", dashboard_project_btn);
 		log.info("dashboard_project_btn");
-		Thread.sleep(4000);
+		//Thread.sleep(4000);
 
 		WebElement ReviewInProgress = wait.until(ExpectedConditions
 				.elementToBeClickable(By.xpath("/html/body/app-root/main/app-homepage/div/div/div[1]/button[1]/span")));
 		js.executeScript("arguments[0].click();", ReviewInProgress);
 		log.info("ReviewInProgress");
-		Thread.sleep(4000);
+		//Thread.sleep(4000);
 
 
 		WebElement search_bar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"/html/body/app-root/main/app-homepage/div/div/div[2]/app-dashboardtable/div/div[1]/div[3]/input")));
 		search_bar.sendKeys("" + artworkDto.getArtworkID());
 		js.executeScript("arguments[0].click();", search_bar);
-		Thread.sleep(4000);
+		//Thread.sleep(4000);
 
 		WebElement resumeButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"/html/body/app-root/main/app-homepage/div/div/div[2]/app-dashboardtable/div/div[2]/table/tbody/tr[1]/td[11]/button")));
 		js.executeScript("arguments[0].click();", resumeButton);
 		log.info("resume button is clicked");
-		Thread.sleep(7000);
+		//Thread.sleep(7000);
 		
 		try {
             WebElement upload_page_next = new WebDriverWait(driver,Duration.ofSeconds(100) ).until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/app-root/main/app-upload-page/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[2]/div[1]/button")));
