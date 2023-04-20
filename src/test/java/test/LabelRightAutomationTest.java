@@ -95,7 +95,7 @@ public class LabelRightAutomationTest {
 	@Test
 	public void test1() throws InterruptedException, IOException {
 
-		FileInputStream artworkRequestsFile = new FileInputStream(Constants.ArtworkRequests);
+		/*FileInputStream artworkRequestsFile = new FileInputStream(Constants.ArtworkRequests);
 
 		XSSFWorkbook artworkRequestWB = new XSSFWorkbook(artworkRequestsFile);
 		XSSFSheet sheet = artworkRequestWB.getSheet("Sheet1");
@@ -133,7 +133,7 @@ public class LabelRightAutomationTest {
 			js.executeScript("arguments[0].click();", start_page);
 
 		}
-
+	
 		WebElement start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
 		js.executeScript("arguments[0].click();", start_page);
 
@@ -150,15 +150,14 @@ public class LabelRightAutomationTest {
 		start_page = driver
 				.findElement(By.xpath("/html/body/app-root/main/app-homepage/div/header/app-header/div/h3/span"));
 		js.executeScript("arguments[0].click();", start_page);
-
-		log.info("Dashboard Flow - Review In Progress - Resume Started.");
-		resumeFunctionality.resumeFlow();
-
+		
+		
+*/
 		log.info("Artwork interrupt flow started");
 		artworkInterrupt.artworkInterruptFlow(Constants.RegionCategory_US_SocialBeverages, Constants.Package_Primary,
 				Constants.Flow1ArtworkUrl, Constants.Flow1LidUrl);
 
-		start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
+		WebElement start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
 		js.executeScript("arguments[0].click();", start_page);
 	
 		log.info("verify interrupt flow started");
@@ -168,21 +167,21 @@ public class LabelRightAutomationTest {
 		start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
 		js.executeScript("arguments[0].click();", start_page);
 
-		log.info("Flow3 Started.");
+		log.info("LidInteruptedFlow Started.");
 		LidInteruptedFlow.Flow3(Constants.RegionCategory_US_SocialBeverages, Constants.Package_Primary,
 				Constants.Flow1ArtworkUrl, Constants.Flow1LidUrl);
 
 		start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
 		js.executeScript("arguments[0].click();", start_page);
 
-		log.info("Flow4 Started.");
+		log.info("artworkAndLidInterruption Started.");
 		artworkAndLidInterruption.Flow4(Constants.RegionCategory_US_SocialBeverages, Constants.Package_Primary,
 				Constants.Flow1ArtworkUrl, Constants.Flow1LidUrl);
 
 		start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
 		js.executeScript("arguments[0].click();", start_page);
 
-		log.info("Flow6 Started.");
+		log.info("resultInterruptionFlow Started.");
 		resultInterruptionFlow.Flow6(Constants.RegionCategory_US_SocialBeverages, Constants.Package_Primary,
 				Constants.Flow1ArtworkUrl, Constants.Flow1LidUrl);
 

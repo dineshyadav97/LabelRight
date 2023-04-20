@@ -32,6 +32,7 @@ public class ArtworkInterrupt {
 		WebElement region_selection_element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
 				"/html/body/app-root/header/app-header/div/div/div[2]/mat-form-field/div/div[1]/div[2]/mat-icon")));
 		js.executeScript("arguments[0].click();", region_selection_element);
+		
 
 		WebElement region_option_element = wait.until(ExpectedConditions.presenceOfElementLocated(
 				By.xpath("/html/body/div[2]/div[2]/div/div/div/mat-option[" + regionOption + "]/span")));

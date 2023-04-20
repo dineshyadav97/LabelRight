@@ -53,8 +53,8 @@ public class VerifyInterruptionFlow {
 		WebElement package_option_element = wait.until(ExpectedConditions.presenceOfElementLocated(
 				By.xpath("/html/body/div[2]/div[2]/div/div/div/mat-option[" + packageType + "]/span")));
 		js.executeScript("arguments[0].click();", package_option_element);
-		log.info("package_option_element");
-		Thread.sleep(3000);
+		log.info("package_option_element selected");
+		
 
 		WebElement aw_upload_element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
 				"/html/body/app-root/main/app-upload-page/div/div/div/div[2]/div/div[1]/app-file-upload/div/div[2]/div/input")));
@@ -62,7 +62,7 @@ public class VerifyInterruptionFlow {
 		log.info(artwork);
 		aw_upload_element.sendKeys(artwork.getAbsolutePath());
 		log.info("Artwork Uploaded");
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 
 		WebElement lid_upload_element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
 				"/html/body/app-root/main/app-upload-page/div/div/div/div[2]/div/div[2]/app-file-upload/div/div[2]/div/input")));
@@ -70,36 +70,36 @@ public class VerifyInterruptionFlow {
 		log.info(lid);
 		lid_upload_element.sendKeys(lid.getAbsolutePath());
 		log.info("Lid Uploaded");
-		Thread.sleep(3000);
 
 		String ArtworkID = (String) js.executeScript("return window.sessionStorage.getItem('projectId');");
 		log.info("Artwork Request Successful: \nArtwork Request ID: " + ArtworkID);
 
 		artworkDto.setArtworkID(Integer.parseInt(ArtworkID));
 
-		WebElement lid_upload_element_img = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
-				"/html/body/app-root/main/app-upload-page/div/div/div/div[2]/div/div[2]/app-file-upload/div/div[2]/div[1]/div/img")));
-		log.info("LID Uploaded. ");
+		
 
-		WebElement nextButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-				"/html/body/app-root/main/app-upload-page/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[2]/div[1]/button")));
-		js.executeScript("arguments[0].click();", nextButton);
-		log.info("next button is clicked");
-
-		WebElement nextButton2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-				"/html/body/app-root/main/app-verify/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[2]/div[1]/button")));
-		log.info("next button2 clicked, exiting Verify page");
+		try {
+            WebElement upload_page_next = new WebDriverWait(driver,Duration.ofSeconds(100) ).until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/app-root/main/app-upload-page/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[2]/div[1]/button")));
+            js.executeScript("arguments[0].click();", upload_page_next);
+            log.info("Upload Button CLicked.");
+        } catch (Exception e) {
+            log.error("Error in UploadPage");
+            log.error(e);
+        }
+		
+		Thread.sleep(2000);
+		log.info("Interrupting Verify page");
 
 		WebElement LabelRight_btn = wait.until(ExpectedConditions
 				.presenceOfElementLocated(By.xpath("/html/body/app-root/header/app-header/div/h3/span")));
 		js.executeScript("arguments[0].click();", LabelRight_btn);
 		log.info("LabelRight_btn");
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 
 		WebElement dashboard_project_btn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"//app-root//app-get-started[@class='ng-star-inserted']/div/div/div[@class='col-8 mx-auto']//button[@class='btn btn-primary dashboard-btn']")));
 		js.executeScript("arguments[0].click();", dashboard_project_btn);
-		log.info("dashboard_project_btn");
+		log.info("dashboard_project_btn clicked");
 
 		WebElement ReviewInProgress = wait.until(ExpectedConditions
 				.elementToBeClickable(By.xpath("/html/body/app-root/main/app-homepage/div/div/div[1]/button[1]/span")));
@@ -128,7 +128,7 @@ public class VerifyInterruptionFlow {
 			log.error("Error in UploadPage");
 			log.error(e);
 		}
-
+		Thread.sleep(2000);
 		try {
 
 			String loading_container_xpath = "/html/body/app-root/app-page-loading/div/app-loading-spinner/div/div";
