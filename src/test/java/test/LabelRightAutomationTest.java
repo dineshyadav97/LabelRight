@@ -47,6 +47,8 @@ public class LabelRightAutomationTest {
 	private static LIDInteruptedFlow LidInteruptedFlow;
 	private static ArtworkAndLidInterruption artworkAndLidInterruption;
 	private static ResultInterruptionFlow resultInterruptionFlow;
+	private static ResultInterruption resultInterruption;
+	
 
 	
 	@BeforeClass
@@ -68,6 +70,7 @@ public class LabelRightAutomationTest {
 		LidInteruptedFlow = new LIDInteruptedFlow(driver);
 		artworkAndLidInterruption = new ArtworkAndLidInterruption(driver);
 		resultInterruptionFlow = new ResultInterruptionFlow(driver);
+		resultInterruption = new ResultInterruption(driver);
 		
 	}
 
@@ -160,20 +163,36 @@ public class LabelRightAutomationTest {
 		artworkInterrupt.artworkInterruptFlow(Constants.RegionCategory_US_SocialBeverages,Constants.Package_Primary,Constants.Flow1ArtworkUrl, Constants.Flow1LidUrl);
 		
 		start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
-		js.executeScript("arguments[0].click();", start_page);
+		js.executeScript("arguments[0].click();", start_page); 
 	
 		log.info("verify interrupt flow started");
 		verifyInterruptionFlow.Flow5(Constants.RegionCategory_US_SocialBeverages,Constants.Package_Primary,Constants.Flow1ArtworkUrl, Constants.Flow1LidUrl);
 		
+		start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
+		js.executeScript("arguments[0].click();", start_page);
+	
 		log.info("Flow3 Started.");
 		LidInteruptedFlow.Flow3(Constants.RegionCategory_US_SocialBeverages,Constants.Package_Primary,Constants.Flow1ArtworkUrl,Constants.Flow1LidUrl);
 		
+		start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
+		js.executeScript("arguments[0].click();", start_page);
+	
 		log.info("Flow4 Started.");
 		artworkAndLidInterruption.Flow4(Constants.RegionCategory_US_SocialBeverages,Constants.Package_Primary,Constants.Flow1ArtworkUrl,Constants.Flow1LidUrl);
 			
+		start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
+		js.executeScript("arguments[0].click();", start_page);
+		
+		log.info("Results interrupt flow started");
+		resultInterruption.resultInterruptionFlow(Constants.RegionCategory_US_SocialBeverages,Constants.Package_Primary,Constants.Flow1ArtworkUrl, Constants.Flow1LidUrl);
+		
+		start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
+		js.executeScript("arguments[0].click();", start_page);
+
 		log.info("Flow6 Started.");
 		resultInterruptionFlow.Flow6(Constants.RegionCategory_US_SocialBeverages,Constants.Package_Primary,Constants.Flow1ArtworkUrl,Constants.Flow1LidUrl);
-
+		
+		
 	}
 	
 	

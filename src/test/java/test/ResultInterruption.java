@@ -2,6 +2,7 @@ package test;
 
 import java.io.File;
 import java.time.Duration;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -11,20 +12,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class VerifyInterruptionFlow {
-
+public class ResultInterruption {
 	private static WebDriver driver;
 	private static JavascriptExecutor js;
 	private static WebDriverWait wait;
 	private static Logger log = LogManager.getLogger();
 
-	public VerifyInterruptionFlow(WebDriver driver) {
-		VerifyInterruptionFlow.driver = driver;
-		VerifyInterruptionFlow.js = (JavascriptExecutor) driver;
-		VerifyInterruptionFlow.wait = new WebDriverWait(driver, Duration.ofSeconds(10000));
+	public ResultInterruption(WebDriver driver) {
+		ResultInterruption.driver = driver;
+		ResultInterruption.js = (JavascriptExecutor) driver;
+		ResultInterruption.wait = new WebDriverWait(driver, Duration.ofSeconds(10000));
 	}
 
-	public void Flow5(int regionOption, int packageType, String artworkUrl, String lidUrl) throws InterruptedException {
+	public void resultInterruptionFlow(int regionOption, int packageType, String artworkUrl, String lidUrl) throws InterruptedException {
 
 		ArtworkDto artworkDto = new ArtworkDto();
 
@@ -89,10 +89,51 @@ public class VerifyInterruptionFlow {
 		js.executeScript("arguments[0].click();", nextButton);
 		log.info("next button is clicked");
 		
-		WebElement nextButton2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-				"/html/body/app-root/main/app-verify/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[2]/div[1]/button")));
-		log.info("next button2 clicked, exiting Verify page");
+		try {
 
+        	String loading_container_xpath = "/html/body/app-root/app-page-loading/div/app-loading-spinner/div/div";
+        	Boolean loading_container_element = new WebDriverWait(driver, Duration.ofSeconds(400)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(loading_container_xpath)));
+
+        	String verify_page_next_xpath = "/html/body/app-root/main/app-verify/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[2]/div[1]/button";
+        	WebElement verify_page_next = new WebDriverWait(driver,Duration.ofSeconds(100)).until(ExpectedConditions.elementToBeClickable(By.xpath(verify_page_next_xpath)));
+
+        	js.executeScript("arguments[0].click();", verify_page_next);
+             
+        	
+            log.info("Verify Button Clicked.");
+        } catch (Exception e) {
+            log.error("Error in VerifyPage");
+            log.error(e);
+        }
+		
+		Thread.sleep(3000);
+
+try {
+        	
+        	String loading_container_xpath = "/html/body/app-root/app-page-loading/div/app-loading-spinner/div/div";
+        	Boolean loading_container_element = new WebDriverWait(driver, Duration.ofSeconds(400)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(loading_container_xpath)));
+
+        	String results_page_next_xpath = "/html/body/app-root/main/app-results/div/div/div[1]/app-side-button-panel/div/div/div[2]/div[1]/button";
+        	WebElement results_page_next = new WebDriverWait(driver,Duration.ofSeconds(100)).until(ExpectedConditions.elementToBeClickable(By.xpath(results_page_next_xpath)));
+
+        	WebElement errorCount = driver.findElement(By.xpath("/html/body/app-root/main/app-results/div/div/div[1]/span"));
+            log.info("Error Count: "+errorCount.getText());
+            
+            artworkDto.setErrorCount(Integer.parseInt(errorCount.getText().substring(0, 1)));
+        	
+//        	js.executeScript("arguments[0].click();", results_page_next);
+//
+//        	log.info("Save button clicked");
+        } catch (Exception e) {
+            log.error("Error in ResultsPage");
+            log.error(e);
+        }
+        
+//		WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
+//				"/html/body/app-root/main/app-results/div/div/div[1]/app-side-button-panel/div/div/div[2]/div[1]/button")));
+
+		log.info("exiting results page, exiting ad hoc flow");
+		
 		WebElement LabelRight_btn = wait.until(ExpectedConditions
 				.presenceOfElementLocated(By.xpath("/html/body/app-root/header/app-header/div/h3/span")));
 		js.executeScript("arguments[0].click();", LabelRight_btn);
@@ -123,18 +164,7 @@ public class VerifyInterruptionFlow {
 		log.info("resume button is clicked");
 		Thread.sleep(7000);
 		
-		
 		try {
-            WebElement upload_page_next = new WebDriverWait(driver,Duration.ofSeconds(100) ).until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/app-root/main/app-upload-page/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[2]/div[1]/button")));
-            js.executeScript("arguments[0].click();", upload_page_next);
-            log.info("Upload Button CLicked.");
-        } catch (Exception e) {
-            log.error("Error in UploadPage");
-            log.error(e);
-        }
-
-        
-        try {
 
         	String loading_container_xpath = "/html/body/app-root/app-page-loading/div/app-loading-spinner/div/div";
         	Boolean loading_container_element = new WebDriverWait(driver, Duration.ofSeconds(400)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(loading_container_xpath)));
@@ -193,31 +223,6 @@ public class VerifyInterruptionFlow {
 	    }
 		Thread.sleep(3000);
         		
-		
-		
-////		WebElement nextButton1 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-////				"/html/body/app-root/main/app-upload-page/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[2]/div[1]/button")));
-////		js.executeScript("arguments[0].click();", nextButton1);
-////		log.info("next button is clicked, going to verify page");
-//
-//		WebElement nextButton2 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-//				"/html/body/app-root/main/app-verify/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[2]/div[1]/button")));
-//		
-//		Thread.sleep(5000);
-//		
-//		js.executeScript("arguments[0].click();", nextButton2);
-//		log.info("second next button is clicked, going to results page");
-//
-//		WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-//				"/html/body/app-root/main/app-results/div/div/div[1]/app-side-button-panel/div/div/div[2]/div[1]/button")));
-//		js.executeScript("arguments[0].click();", saveButton);
-//		log.info("save button is clicked, going to dwnld page");
-//
-//		WebElement dwnldButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/app-root/main/app-all-done/div/div/div[2]/div/div[3]/div[1]/a")));
-////		js.executeScript("arguments[0].click();", dwnldButton);
-////		log.info("download button is clicked");
-//
-//		Thread.sleep(3000);
 		
 	}
 }
