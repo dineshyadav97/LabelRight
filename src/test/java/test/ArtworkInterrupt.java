@@ -76,6 +76,7 @@ public class ArtworkInterrupt {
 		WebElement labelRightHome = wait.until(ExpectedConditions
 				.presenceOfElementLocated(By.xpath("/html/body/app-root/header/app-header/div/h3/span")));
 		js.executeScript("arguments[0].click();", labelRightHome);
+		Thread.sleep(4000);
 
 		log.info("going to dashboard");
 
@@ -183,6 +184,7 @@ public class ArtworkInterrupt {
 	        log.error("Error in DownloadPage");
 	        log.error(e);
 	    }
+        
 		Thread.sleep(3000);
 		
 
