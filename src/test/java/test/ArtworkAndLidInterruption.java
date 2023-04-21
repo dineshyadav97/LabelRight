@@ -31,14 +31,11 @@ public class ArtworkAndLidInterruption {
 		WebElement region_selection_element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
 				"/html/body/app-root/header/app-header/div/div/div[2]/mat-form-field/div/div[1]/div[2]/mat-icon")));
 		js.executeScript("arguments[0].click();", region_selection_element);
-		log.info("region_selection_element");
-		//Thread.sleep(4000);
+		
 
-		WebElement region_option_element = wait.until(ExpectedConditions
-				.presenceOfElementLocated(By.xpath("/html/body/div[2]/div[2]/div/div/div/mat-option[1]/span")));
+		WebElement region_option_element = wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("/html/body/div[2]/div[2]/div/div/div/mat-option[" + regionOption + "]/span")));
 		js.executeScript("arguments[0].click();", region_option_element);
-		log.info("region_option_element");
-		//Thread.sleep(4000);
 
 		WebElement New_Ad_hoc_review_btn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"//app-root//app-get-started[@class='ng-star-inserted']/div/div/div[@class='col-8 mx-auto']//div[@class='menulist']/button[2]")));
@@ -65,7 +62,7 @@ public class ArtworkAndLidInterruption {
 		log.info(artwork);
 		aw_upload_element.sendKeys(artwork.getAbsolutePath());
 		log.info("Artwork Uploaded");
-		Thread.sleep(7000);
+		Thread.sleep(2000);
 
 		WebElement lid_upload_element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
 				"/html/body/app-root/main/app-upload-page/div/div/div/div[2]/div/div[2]/app-file-upload/div/div[2]/div/input")));
@@ -73,18 +70,35 @@ public class ArtworkAndLidInterruption {
 		log.info(lid);
 		lid_upload_element.sendKeys(lid.getAbsolutePath());
 		log.info("Lid Uploaded");
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 
 		String ArtworkID = (String) js.executeScript("return window.sessionStorage.getItem('projectId');");
 		log.info("Artwork Request Successful: \nArtwork Request ID: " + ArtworkID);
 
 		artworkDto.setArtworkID(Integer.parseInt(ArtworkID));
+		
+		String upload_page_next_xpath1 = "/html/body/app-root/main/app-upload-page/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[2]/div[1]/button";
+		WebElement upload_page_next1 = new WebDriverWait(driver, Duration.ofSeconds(100))
+				.until(ExpectedConditions.elementToBeClickable(By.xpath(upload_page_next_xpath1)));
+
+		Thread.sleep(2000);
+		log.info("Interrupting upload page");
 
 		WebElement LabelRight_btn = wait.until(ExpectedConditions
 				.presenceOfElementLocated(By.xpath("/html/body/app-root/header/app-header/div/h3/span")));
 		js.executeScript("arguments[0].click();", LabelRight_btn);
 		log.info("LabelRight_btn");
 		//Thread.sleep(4000);
+		
+		region_selection_element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+				"/html/body/app-root/header/app-header/div/div/div[2]/mat-form-field/div/div[1]/div[2]/mat-icon")));
+		js.executeScript("arguments[0].click();", region_selection_element);
+		
+
+		region_option_element = wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("/html/body/div[2]/div[2]/div/div/div/mat-option[" + regionOption + "]/span")));
+		js.executeScript("arguments[0].click();", region_option_element);
+		
 
 		WebElement dashboard_project_btn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"//app-root//app-get-started[@class='ng-star-inserted']/div/div/div[@class='col-8 mx-auto']//button[@class='btn btn-primary dashboard-btn']")));

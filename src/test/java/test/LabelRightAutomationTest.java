@@ -152,38 +152,39 @@ public class LabelRightAutomationTest {
 		js.executeScript("arguments[0].click();", start_page);
 		
 		
-*/
+
 		log.info("Artwork interrupt flow started");
-		artworkInterrupt.artworkInterruptFlow(Constants.RegionCategory_US_SocialBeverages, Constants.Package_Primary,
+		artworkInterrupt.artworkInterruptFlow(Constants.RegionCategory_Latam_Beverages, Constants.Package_Primary,
 				Constants.Flow1ArtworkUrl, Constants.Flow1LidUrl);
 
 		WebElement start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
 		js.executeScript("arguments[0].click();", start_page);
 	
 		log.info("verify interrupt flow started");
-		verifyInterruptionFlow.Flow5(Constants.RegionCategory_US_SocialBeverages, Constants.Package_Primary,
+		verifyInterruptionFlow.Flow5(Constants.RegionCategory_Latam_Beverages, Constants.Package_Primary,
 				Constants.Flow1ArtworkUrl, Constants.Flow1LidUrl);
 
+		start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
+		js.executeScript("arguments[0].click();", start_page);
+*/
+		log.info("artworkAndLidInterruption Started.");
+		artworkAndLidInterruption.Flow4(Constants.RegionCategory_Latam_Beverages, Constants.Package_Primary,
+				Constants.Flow1ArtworkUrl, Constants.Flow1LidUrl);
+
+		WebElement start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
+		js.executeScript("arguments[0].click();", start_page);
+
+		log.info("resultInterruptionFlow Started.");
+		resultInterruptionFlow.Flow6(Constants.RegionCategory_Latam_Beverages, Constants.Package_Primary,
+				Constants.Flow1ArtworkUrl, Constants.Flow1LidUrl);
+		
 		start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
 		js.executeScript("arguments[0].click();", start_page);
 
 		log.info("LidInteruptedFlow Started.");
-		LidInteruptedFlow.Flow3(Constants.RegionCategory_US_SocialBeverages, Constants.Package_Primary,
+		LidInteruptedFlow.Flow3(Constants.RegionCategory_Latam_Beverages, Constants.Package_Primary,
 				Constants.Flow1ArtworkUrl, Constants.Flow1LidUrl);
 
-		start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
-		js.executeScript("arguments[0].click();", start_page);
-
-		log.info("artworkAndLidInterruption Started.");
-		artworkAndLidInterruption.Flow4(Constants.RegionCategory_US_SocialBeverages, Constants.Package_Primary,
-				Constants.Flow1ArtworkUrl, Constants.Flow1LidUrl);
-
-		start_page = driver.findElement(By.xpath("/html/body/app-root/header/app-header/div/h3/span"));
-		js.executeScript("arguments[0].click();", start_page);
-
-		log.info("resultInterruptionFlow Started.");
-		resultInterruptionFlow.Flow6(Constants.RegionCategory_US_SocialBeverages, Constants.Package_Primary,
-				Constants.Flow1ArtworkUrl, Constants.Flow1LidUrl);
 
 	}
 

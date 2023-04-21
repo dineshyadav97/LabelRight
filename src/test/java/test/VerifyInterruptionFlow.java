@@ -31,18 +31,16 @@ public class VerifyInterruptionFlow {
 		WebElement region_selection_element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
 				"/html/body/app-root/header/app-header/div/div/div[2]/mat-form-field/div/div[1]/div[2]/mat-icon")));
 		js.executeScript("arguments[0].click();", region_selection_element);
-		log.info("region_selection_element");
 
-		WebElement region_option_element = wait.until(ExpectedConditions
-				.presenceOfElementLocated(By.xpath("/html/body/div[2]/div[2]/div/div/div/mat-option[1]/span")));
+		WebElement region_option_element = wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("/html/body/div[2]/div[2]/div/div/div/mat-option[" + regionOption + "]/span")));
 		js.executeScript("arguments[0].click();", region_option_element);
-		log.info("region_option_element");
 
 		WebElement New_Ad_hoc_review_btn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"//app-root//app-get-started[@class='ng-star-inserted']/div/div/div[@class='col-8 mx-auto']//div[@class='menulist']/button[2]")));
 		js.executeScript("arguments[0].click();", New_Ad_hoc_review_btn);
 		log.info("New_Ad_hoc_review_btn");
-		
+
 		Thread.sleep(3000);
 
 		WebElement package_selection_element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
@@ -54,8 +52,9 @@ public class VerifyInterruptionFlow {
 				By.xpath("/html/body/div[2]/div[2]/div/div/div/mat-option[" + packageType + "]/span")));
 		js.executeScript("arguments[0].click();", package_option_element);
 		log.info("package_option_element selected");
-		
+		Thread.sleep(3000);
 
+		
 		WebElement aw_upload_element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
 				"/html/body/app-root/main/app-upload-page/div/div/div/div[2]/div/div[1]/app-file-upload/div/div[2]/div/input")));
 		File artwork = new File(artworkUrl);
@@ -76,17 +75,21 @@ public class VerifyInterruptionFlow {
 
 		artworkDto.setArtworkID(Integer.parseInt(ArtworkID));
 
-		
-
 		try {
-            WebElement upload_page_next = new WebDriverWait(driver,Duration.ofSeconds(100) ).until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/app-root/main/app-upload-page/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[2]/div[1]/button")));
-            js.executeScript("arguments[0].click();", upload_page_next);
-            log.info("Upload Button CLicked.");
-        } catch (Exception e) {
-            log.error("Error in UploadPage");
-            log.error(e);
-        }
-		
+			WebElement upload_page_next = new WebDriverWait(driver, Duration.ofSeconds(100))
+					.until(ExpectedConditions.elementToBeClickable(By.xpath(
+							"/html/body/app-root/main/app-upload-page/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[2]/div[1]/button")));
+			js.executeScript("arguments[0].click();", upload_page_next);
+			log.info("Upload Button CLicked.");
+		} catch (Exception e) {
+			log.error("Error in UploadPage");
+			log.error(e);
+		}
+
+		String verify_page_next_xpath1 = "/html/body/app-root/main/app-verify/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[2]/div[1]/button";
+		WebElement verify_page_next1 = new WebDriverWait(driver, Duration.ofSeconds(100))
+				.until(ExpectedConditions.elementToBeClickable(By.xpath(verify_page_next_xpath1)));
+
 		Thread.sleep(2000);
 		log.info("Interrupting Verify page");
 
@@ -95,6 +98,14 @@ public class VerifyInterruptionFlow {
 		js.executeScript("arguments[0].click();", LabelRight_btn);
 		log.info("LabelRight_btn");
 		Thread.sleep(2000);
+
+		region_selection_element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+				"/html/body/app-root/header/app-header/div/div/div[2]/mat-form-field/div/div[1]/div[2]/mat-icon")));
+		js.executeScript("arguments[0].click();", region_selection_element);
+
+		region_option_element = wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("/html/body/div[2]/div[2]/div/div/div/mat-option[" + regionOption + "]/span")));
+		js.executeScript("arguments[0].click();", region_option_element);
 
 		WebElement dashboard_project_btn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"//app-root//app-get-started[@class='ng-star-inserted']/div/div/div[@class='col-8 mx-auto']//button[@class='btn btn-primary dashboard-btn']")));
@@ -118,17 +129,23 @@ public class VerifyInterruptionFlow {
 		log.info("resume button is clicked");
 		Thread.sleep(3000);
 
-		try {
-			WebElement upload_page_next = new WebDriverWait(driver, Duration.ofSeconds(100))
-					.until(ExpectedConditions.elementToBeClickable(By.xpath(
-							"/html/body/app-root/main/app-upload-page/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[2]/div[1]/button")));
-			js.executeScript("arguments[0].click();", upload_page_next);
-			log.info("Upload Button CLicked.");
-		} catch (Exception e) {
-			log.error("Error in UploadPage");
-			log.error(e);
+		if (driver.getCurrentUrl().equals("http://52.152.189.35:8080/upload")) {
+
+			try {
+				WebElement upload_page_next = new WebDriverWait(driver, Duration.ofSeconds(100))
+						.until(ExpectedConditions.elementToBeClickable(By.xpath(
+								"/html/body/app-root/main/app-upload-page/div/div/div/div[1]/app-side-button-panel/div/div[1]/div[2]/div[1]/button")));
+				js.executeScript("arguments[0].click();", upload_page_next);
+				log.info("Upload Button CLicked.");
+			} catch (Exception e) {
+				log.error("Error in UploadPage");
+				log.error(e);
+			}
+
+			Thread.sleep(2000);
+
 		}
-		Thread.sleep(2000);
+
 		try {
 
 			String loading_container_xpath = "/html/body/app-root/app-page-loading/div/app-loading-spinner/div/div";

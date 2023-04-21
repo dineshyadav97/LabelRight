@@ -31,13 +31,11 @@ public class LIDInteruptedFlow {
 		WebElement region_selection_element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
 				"/html/body/app-root/header/app-header/div/div/div[2]/mat-form-field/div/div[1]/div[2]/mat-icon")));
 		js.executeScript("arguments[0].click();", region_selection_element);
-		log.info("region_selection_element");
 		
 
-		WebElement region_option_element = wait.until(ExpectedConditions
-				.presenceOfElementLocated(By.xpath("/html/body/div[2]/div[2]/div/div/div/mat-option[1]/span")));
+		WebElement region_option_element = wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("/html/body/div[2]/div[2]/div/div/div/mat-option[" + regionOption + "]/span")));
 		js.executeScript("arguments[0].click();", region_option_element);
-		log.info("region_option_element");
 		
 		WebElement New_Ad_hoc_review_btn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"//app-root//app-get-started[@class='ng-star-inserted']/div/div/div[@class='col-8 mx-auto']//div[@class='menulist']/button[2]")));
@@ -76,6 +74,14 @@ public class LIDInteruptedFlow {
 		js.executeScript("arguments[0].click();", LabelRight_btn);
 		log.info("LabelRight_btn");
 		
+		region_selection_element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+				"/html/body/app-root/header/app-header/div/div/div[2]/mat-form-field/div/div[1]/div[2]/mat-icon")));
+		js.executeScript("arguments[0].click();", region_selection_element);
+		
+
+		region_option_element = wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("/html/body/div[2]/div[2]/div/div/div/mat-option[" + regionOption + "]/span")));
+		js.executeScript("arguments[0].click();", region_option_element);
 
 		WebElement dashboard_project_btn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
 				"//app-root//app-get-started[@class='ng-star-inserted']/div/div/div[@class='col-8 mx-auto']//button[@class='btn btn-primary dashboard-btn']")));
